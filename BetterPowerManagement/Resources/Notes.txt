@@ -1,0 +1,13 @@
+﻿			System.Diagnostics.Process process = new System.Diagnostics.Process();
+			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+			startInfo.FileName = "cmd.exe";
+			startInfo.Arguments = "/c powercfg /setactive 95da5b2f-b57d-4ffa-99b7-a8004b8a8845";
+			process.StartInfo = startInfo;
+			process.Start();
+
+			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+			startInfo.FileName = "cmd.exe";
+			startInfo.Arguments = "/c rundll32.exe powrprof.dll, SetSuspendState Sleep";
+			process.StartInfo = startInfo;
+			process.Start();
