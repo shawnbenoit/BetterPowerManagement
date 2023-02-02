@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-
 namespace BetterPowerManagement
 {
 
 
 	public partial class Form1 : Form
 	{
+		struct PowerScheme
+		{
+			public string friendlyName;
+			public Guid guidID;
+		}
+
+		List<PowerScheme> schemes = new List<PowerScheme>();
 
 		[DllImport("PowrProf.dll")]
 		public static extern UInt32 PowerEnumerate(IntPtr RootPowerKey, IntPtr SchemeGuid, IntPtr SubGroupOfPowerSettingGuid, UInt32 AcessFlags, UInt32 Index, ref Guid Buffer, ref UInt32 BufferSize);
@@ -61,9 +67,14 @@ namespace BetterPowerManagement
 		public Form1()
 		{
 			InitializeComponent();
-			label1.Text = "%" + ((SystemInformation.PowerStatus.BatteryLifePercent) * 100).ToString();
+			timer1.Start();
 			listSchemes();
+		}
 
+		public string ListNumber()
+		{
+			string result = "powerScheme" + schemes.Count.ToString();
+			return result;
 		}
 
 		public void listSchemes()
@@ -80,8 +91,11 @@ namespace BetterPowerManagement
 
 			foreach(Guid guidPlan in guidPlans)
 			{
+				string pscheme = ListNumber();
+				//PowerScheme {@pscheme} = new PowerScheme();
+				//powerScheme.friendlyName
 				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
-				listView1.Items.Add(guidPlan.ToString(), "GUID");
+				//listView1.Items.Add(guidPlan.ToString(), "GUID");
 			}
 
 		}
@@ -89,7 +103,7 @@ namespace BetterPowerManagement
 		private void ListView1_ItemActivate(Object sender, EventArgs e)
 		{
 
-			MessageBox.Show("You are in the ListView.ItemActivate event.");
+			//MessageBox.Show("You are in the ListView.ItemActivate event.");
 		}
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,13 +118,18 @@ namespace BetterPowerManagement
 			//process.StartInfo = startInfo;
 			//process.Start();
 
-			label3.Text = selectedItemName.Substring(0);// ToString();
+			label3.Text = ListNumber(); //selectedItemName.Substring(0);// ToString();
 
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			label1.Text = "Battery Status: %" + ((SystemInformation.PowerStatus.BatteryLifePercent) * 100).ToString();
 		}
 	}
 }
