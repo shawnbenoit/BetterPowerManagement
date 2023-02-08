@@ -114,13 +114,29 @@ namespace BetterPowerManagement
 			double chargeStatus = ((SystemInformation.PowerStatus.BatteryLifePercent) * 100);
 			label1.Text = "Battery Status: %" + chargeStatus.ToString();
 
-			if(chargeStatus >= 75)
+			if(chargeStatus > 85)
 			{
 				label1.ForeColor = System.Drawing.Color.Green;
 			}
-			else if(chargeStatus < 75 && chargeStatus > 25)
+			else if(chargeStatus < 86 && chargeStatus > 71)
+			{
+				label1.ForeColor = System.Drawing.Color.GreenYellow;
+			}
+			else if(chargeStatus < 72 && chargeStatus > 58)
 			{
 				label1.ForeColor = System.Drawing.Color.Yellow;
+			}
+			else if(chargeStatus < 59 && chargeStatus > 45)
+			{
+				label1.ForeColor = System.Drawing.Color.Orange;
+			}
+			else if(chargeStatus < 46 && chargeStatus > 32)
+			{
+				label1.ForeColor = System.Drawing.Color.DarkOrange;
+			}
+			else if(chargeStatus < 33 && chargeStatus > 19)
+			{
+				label1.ForeColor = System.Drawing.Color.OrangeRed;
 			}
 			else
 			{
