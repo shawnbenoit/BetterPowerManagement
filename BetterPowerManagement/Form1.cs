@@ -63,9 +63,13 @@ namespace BetterPowerManagement
 			listSchemes();
 		}
 
+		public string friendlyName;
+		public Guid guidID;
+		//TODO
+
+
 		public void listSchemes()
 		{
-
 			listView1.View = View.Details;
 			listView1.FullRowSelect = true;
 			listView1.Columns.Add("Plan", 190, HorizontalAlignment.Left);
@@ -78,9 +82,6 @@ namespace BetterPowerManagement
 			}
 
 		}
-
-		public string friendlyName;
-		public Guid guidID;
 
 		private void ListView1_ItemActivate(Object sender, EventArgs e)
 		{
