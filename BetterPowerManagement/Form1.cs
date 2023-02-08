@@ -9,14 +9,6 @@ namespace BetterPowerManagement
 
 	public partial class Form1 : Form
 	{
-		struct PowerScheme
-		{
-			public string friendlyName;
-			public Guid guidID;
-		}
-
-		List<PowerScheme> schemes = new List<PowerScheme>();
-
 		[DllImport("PowrProf.dll")]
 		public static extern UInt32 PowerEnumerate(IntPtr RootPowerKey, IntPtr SchemeGuid, IntPtr SubGroupOfPowerSettingGuid, UInt32 AcessFlags, UInt32 Index, ref Guid Buffer, ref UInt32 BufferSize);
 
@@ -71,34 +63,24 @@ namespace BetterPowerManagement
 			listSchemes();
 		}
 
-		public string ListNumber()
-		{
-			string result = "powerScheme" + schemes.Count.ToString();
-			return result;
-		}
-
 		public void listSchemes()
 		{
 
 			listView1.View = View.Details;
 			listView1.FullRowSelect = true;
-			listView1.Columns.Add("Plan", 160, HorizontalAlignment.Left);
-			listView1.Columns.Add("GUID", 240, HorizontalAlignment.Left);
-
-
+			listView1.Columns.Add("Plan", 190, HorizontalAlignment.Left);
 
 			var guidPlans = GetAll();
 
 			foreach(Guid guidPlan in guidPlans)
 			{
-				string pscheme = ListNumber();
-				//PowerScheme {@pscheme} = new PowerScheme();
-				//powerScheme.friendlyName
 				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
-				//listView1.Items.Add(guidPlan.ToString(), "GUID");
 			}
 
 		}
+
+		public string friendlyName;
+		public Guid guidID;
 
 		private void ListView1_ItemActivate(Object sender, EventArgs e)
 		{
@@ -118,7 +100,7 @@ namespace BetterPowerManagement
 			//process.StartInfo = startInfo;
 			//process.Start();
 
-			label3.Text = ListNumber(); //selectedItemName.Substring(0);// ToString();
+			//label3.Text = ListNumber().ToString(); //selectedItemName.Substring(0);// ToString();
 
 		}
 
@@ -129,7 +111,21 @@ namespace BetterPowerManagement
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			label1.Text = "Battery Status: %" + ((SystemInformation.PowerStatus.BatteryLifePercent) * 100).ToString();
+			double chargeStatus = ((SystemInformation.PowerStatus.BatteryLifePercent) * 100);
+			label1.Text = "Battery Status: %" + chargeStatus.ToString();
+
+			if(chargeStatus >= 75)
+			{
+				label1.ForeColor = System.Drawing.Color.Green;
+			}
+			else if(chargeStatus < 75 && chargeStatus > 25)
+			{
+				label1.ForeColor = System.Drawing.Color.Yellow;
+			}
+			else
+			{
+				label1.ForeColor = System.Drawing.Color.Red;
+			}
 		}
 	}
 }
