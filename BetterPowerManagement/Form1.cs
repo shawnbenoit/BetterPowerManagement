@@ -91,7 +91,8 @@ namespace BetterPowerManagement
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			string selectedItemName = listView1.SelectedItems.ToString();
+			friendlyName = listView1.Items[0].ToString();
+			string selectedItemName = friendlyName.ToString();
 
 			//System.Diagnostics.Process process = new System.Diagnostics.Process();
 			//System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
@@ -101,7 +102,7 @@ namespace BetterPowerManagement
 			//process.StartInfo = startInfo;
 			//process.Start();
 
-			//label3.Text = ListNumber().ToString(); //selectedItemName.Substring(0);// ToString();
+			label3.Text = selectedItemName.ToString(); //selectedItemName.Substring(0);// ToString();
 
 		}
 
@@ -143,6 +144,16 @@ namespace BetterPowerManagement
 			{
 				label1.ForeColor = System.Drawing.Color.Red;
 			}
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
