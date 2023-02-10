@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -151,13 +153,28 @@ namespace BetterPowerManagement
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process process = new System.Diagnostics.Process();
-			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Performance Mode.pow'";
-			process.StartInfo = startInfo;
-			process.Start();
+			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
+			using(cmd) //This is here because Process implements IDisposable
+			{
+
+				var inputPath = Path.Combine(Environment.CurrentDirectory, "Resources\\Ultra Performance Mode.pow");
+
+				//This hides the resulting popup window
+				cmd.StartInfo.CreateNoWindow = true;
+				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+				//Prepare a guid for this new import
+				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
+
+				//Import the new power plan
+				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
+				cmd.Start();
+
+				//Set the new power plan as active
+				cmd.StartInfo.Arguments = $"/setactive {guidString}";
+				cmd.Start();
+			}
+
 			listView1.Items.Clear();
 			listSchemes();
 
@@ -165,13 +182,28 @@ namespace BetterPowerManagement
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process process = new System.Diagnostics.Process();
-			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Power Saver.pow'";
-			process.StartInfo = startInfo;
-			process.Start();
+			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
+			using(cmd) //This is here because Process implements IDisposable
+			{
+
+				var inputPath = Path.Combine(Environment.CurrentDirectory, "Resources\\Ultra Power Saver.pow");
+
+				//This hides the resulting popup window
+				cmd.StartInfo.CreateNoWindow = true;
+				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+				//Prepare a guid for this new import
+				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
+
+				//Import the new power plan
+				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
+				cmd.Start();
+
+				//Set the new power plan as active
+				cmd.StartInfo.Arguments = $"/setactive {guidString}";
+				cmd.Start();
+			}
+
 			listView1.Items.Clear();
 			listSchemes();
 		}
