@@ -148,12 +148,24 @@ namespace BetterPowerManagement
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-
+			System.Diagnostics.Process process = new System.Diagnostics.Process();
+			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+			startInfo.FileName = "cmd.exe";
+			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Performance Mode.pow'";
+			process.StartInfo = startInfo;
+			process.Start();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-
+			System.Diagnostics.Process process = new System.Diagnostics.Process();
+			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+			startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+			startInfo.FileName = "cmd.exe";
+			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Power Saver.pow'";
+			process.StartInfo = startInfo;
+			process.Start();
 		}
 	}
 }
