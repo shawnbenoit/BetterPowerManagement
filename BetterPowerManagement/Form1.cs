@@ -126,7 +126,7 @@ namespace BetterPowerManagement
 			}
 			else if(chargeStatus < 72 && chargeStatus > 58)
 			{
-				label1.ForeColor = System.Drawing.Color.Yellow;
+				label1.ForeColor = System.Drawing.Color.Goldenrod;
 			}
 			else if(chargeStatus < 59 && chargeStatus > 45)
 			{
@@ -155,6 +155,7 @@ namespace BetterPowerManagement
 			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Performance Mode.pow'";
 			process.StartInfo = startInfo;
 			process.Start();
+
 		}
 
 		private void button2_Click(object sender, EventArgs e)
