@@ -6,8 +6,6 @@ using System.Windows.Forms;
 
 namespace BetterPowerManagement
 {
-
-
 	public partial class Form1 : Form
 	{
 		[DllImport("PowrProf.dll")]
@@ -74,9 +72,16 @@ namespace BetterPowerManagement
 
 		public void listSchemes()
 		{
+			//ListView listofplans = new ListView();
+			//listofplans.Items.Clear();
+			//ListViewItem item = listofplans.SelectedItems[0];
+			//listofplans.View = View.Details;
+			//listofplans.FullRowSelect = true;
+			//listofplans.Columns.Add("Power Plan", 190, HorizontalAlignment.Left);
+
 			listView1.View = View.Details;
 			listView1.FullRowSelect = true;
-			listView1.Columns.Add("Plan", 190, HorizontalAlignment.Left);
+			listView1.Columns.Add("Power Plan", 190, HorizontalAlignment.Left);
 
 			var guidPlans = GetAll();
 
@@ -87,17 +92,8 @@ namespace BetterPowerManagement
 
 		}
 
-		private void ListView1_ItemActivate(Object sender, EventArgs e)
-		{
-
-			//MessageBox.Show("You are in the ListView.ItemActivate event.");
-		}
-
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			friendlyName = listView1.Items[0].ToString();
-			string selectedItemName = friendlyName.ToString();
-
 			//System.Diagnostics.Process process = new System.Diagnostics.Process();
 			//System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 			//startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
@@ -106,7 +102,10 @@ namespace BetterPowerManagement
 			//process.StartInfo = startInfo;
 			//process.Start();
 
-			label3.Text = selectedItemName.ToString(); //selectedItemName.Substring(0);// ToString();
+			if(listView1.SelectedItems.Count == 0)
+				return;
+
+			label3.Text = listView1.FocusedItem.Text;
 
 		}
 
@@ -159,6 +158,8 @@ namespace BetterPowerManagement
 			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Performance Mode.pow'";
 			process.StartInfo = startInfo;
 			process.Start();
+			listView1.Items.Clear();
+			listSchemes();
 
 		}
 
@@ -171,6 +172,8 @@ namespace BetterPowerManagement
 			startInfo.Arguments = "/c powercfg /import 'Resources/Ultra Power Saver.pow'";
 			process.StartInfo = startInfo;
 			process.Start();
+			listView1.Items.Clear();
+			listSchemes();
 		}
 
 		private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -192,9 +195,7 @@ namespace BetterPowerManagement
 		private void Form1_MouseUp(object sender, MouseEventArgs e)
 		{
 			{
-
 				dragging = false;
-
 			}
 		}
 	}
