@@ -102,6 +102,8 @@
     </Compile>
     <None Include="Resources\Ultra Performance Mode.pow" />
     <None Include="Resources\Ultra Power Saver.pow" />
+    <None Include="Ultra Performance Mode.pow" />
+    <None Include="Ultra Power Saver.pow" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

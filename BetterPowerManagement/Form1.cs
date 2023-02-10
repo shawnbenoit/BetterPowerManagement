@@ -157,7 +157,7 @@ namespace BetterPowerManagement
 			using(cmd) //This is here because Process implements IDisposable
 			{
 
-				var inputPath = Path.Combine(Environment.CurrentDirectory, "Resources\\Ultra Performance Mode.pow");
+				var inputPath = Path.Combine(Environment.CurrentDirectory, "Ultra Performance Mode.pow");
 
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
@@ -186,7 +186,7 @@ namespace BetterPowerManagement
 			using(cmd) //This is here because Process implements IDisposable
 			{
 
-				var inputPath = Path.Combine(Environment.CurrentDirectory, "Resources\\Ultra Power Saver.pow");
+				var inputPath = Path.Combine(Environment.CurrentDirectory, "Ultra Power Saver.pow");
 
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
