@@ -89,10 +89,10 @@
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.White;
-			this.button1.Location = new System.Drawing.Point(68, 290);
+			this.button1.Location = new System.Drawing.Point(10, 290);
 			this.button1.Margin = new System.Windows.Forms.Padding(2);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(80, 33);
+			this.button1.Size = new System.Drawing.Size(970, 33);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "Exit";
 			this.button1.UseVisualStyleBackColor = false;
@@ -113,7 +113,7 @@
 			this.button2.ForeColor = System.Drawing.Color.White;
 			this.button2.Location = new System.Drawing.Point(10, 255);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(210, 30);
+			this.button2.Size = new System.Drawing.Size(970, 30);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "Import Ultra Power Saver";
 			this.button2.UseVisualStyleBackColor = false;
@@ -129,7 +129,7 @@
 			this.button3.ForeColor = System.Drawing.Color.White;
 			this.button3.Location = new System.Drawing.Point(10, 219);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(210, 30);
+			this.button3.Size = new System.Drawing.Size(970, 30);
 			this.button3.TabIndex = 6;
 			this.button3.Text = "Import Ultra Performance";
 			this.button3.UseVisualStyleBackColor = false;
@@ -141,7 +141,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.Color.Black;
-			this.ClientSize = new System.Drawing.Size(232, 360);
+			this.ClientSize = new System.Drawing.Size(992, 360);
 			this.ControlBox = false;
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);

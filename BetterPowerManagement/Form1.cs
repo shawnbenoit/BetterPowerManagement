@@ -107,7 +107,7 @@ namespace BetterPowerManagement
 			if(listView1.SelectedItems.Count == 0)
 				return;
 
-			label3.Text = listView1.FocusedItem.Text;
+			//label3.Text = cmd.Start().ToString();  //listView1.FocusedItem.Text;
 
 		}
 
@@ -175,9 +175,6 @@ namespace BetterPowerManagement
 				cmd.Start();
 			}
 
-			listView1.Items.Clear();
-			listSchemes();
-
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -186,7 +183,8 @@ namespace BetterPowerManagement
 			using(cmd) //This is here because Process implements IDisposable
 			{
 
-				var inputPath = Path.Combine(Environment.CurrentDirectory, "Ultra Power Saver.pow");
+				var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\");
+				var planName = "Ultra Power Saver.pow";
 
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
@@ -196,16 +194,10 @@ namespace BetterPowerManagement
 				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
 
 				//Import the new power plan
-				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
+				cmd.StartInfo.Arguments = $"-import \"{inputPath}{planName}";
 				cmd.Start();
-
-				//Set the new power plan as active
-				cmd.StartInfo.Arguments = $"/setactive {guidString}";
-				cmd.Start();
+				label3.Text = cmd.StartInfo.Arguments.ToString();
 			}
-
-			listView1.Items.Clear();
-			listSchemes();
 		}
 
 		private void Form1_MouseDown(object sender, MouseEventArgs e)
