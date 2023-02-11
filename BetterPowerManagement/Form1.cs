@@ -184,7 +184,7 @@ namespace BetterPowerManagement
 			{
 
 				var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\");
-				var planName = "Ultra Power Saver.pow";
+				var planName = "UltraPowerSaver.pow";
 
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
@@ -193,7 +193,7 @@ namespace BetterPowerManagement
 				//Prepare a guid for this new import
 				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
 
-				//Import the new power plan
+				//Import the new power plan NEEDS WORK
 				cmd.StartInfo.Arguments = $"-import \"{inputPath}{planName}";
 				cmd.Start();
 				label3.Text = cmd.StartInfo.Arguments.ToString();
