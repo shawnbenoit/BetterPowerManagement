@@ -156,9 +156,7 @@ namespace BetterPowerManagement
 			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
 			using(cmd) //This is here because Process implements IDisposable
 			{
-
-				var inputPath = Path.Combine(Environment.CurrentDirectory, "Ultra Performance Mode.pow");
-
+				var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPerformanceMode.pow");
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
 				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -170,9 +168,11 @@ namespace BetterPowerManagement
 				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
 				cmd.Start();
 
+				label3.Text = cmd.StartInfo.Arguments.ToString();
 				//Set the new power plan as active
-				cmd.StartInfo.Arguments = $"/setactive {guidString}";
-				cmd.Start();
+				//cmd.StartInfo.Arguments = $"/setactive {guidString}";
+				//cmd.Start();
+
 			}
 
 		}
@@ -182,9 +182,7 @@ namespace BetterPowerManagement
 			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
 			using(cmd) //This is here because Process implements IDisposable
 			{
-
-				var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\");
-				var planName = "UltraPowerSaver.pow";
+				string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPowerSaver.pow");
 
 				//This hides the resulting popup window
 				cmd.StartInfo.CreateNoWindow = true;
@@ -193,8 +191,8 @@ namespace BetterPowerManagement
 				//Prepare a guid for this new import
 				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
 
-				//Import the new power plan NEEDS WORK
-				cmd.StartInfo.Arguments = $"-import \"{inputPath}{planName}";
+				//Import the new power plan ---------------------------------------------------NEEDS WORK
+				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
 				cmd.Start();
 				label3.Text = cmd.StartInfo.Arguments.ToString();
 			}
