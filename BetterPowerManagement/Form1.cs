@@ -168,10 +168,9 @@ namespace BetterPowerManagement
 				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
 				cmd.Start();
 
-				label3.Text = cmd.StartInfo.Arguments.ToString();
 				//Set the new power plan as active
-				//cmd.StartInfo.Arguments = $"/setactive {guidString}";
-				//cmd.Start();
+				cmd.StartInfo.Arguments = $"/setactive {guidString}";
+				cmd.Start();
 
 			}
 
@@ -179,7 +178,7 @@ namespace BetterPowerManagement
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
+			var cmd = new Process { StartInfo = { FileName = "powercfg.exe" } };
 			using(cmd) //This is here because Process implements IDisposable
 			{
 				string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPowerSaver.pow");
@@ -192,9 +191,16 @@ namespace BetterPowerManagement
 				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
 
 				//Import the new power plan ---------------------------------------------------NEEDS WORK
-				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
+				cmd.StartInfo.Arguments = $"/import \"{inputPath}\" {guidString}";
 				cmd.Start();
+
 				label3.Text = cmd.StartInfo.Arguments.ToString();
+
+				//Set the new power plan as active
+				cmd.StartInfo.Arguments = $"/setactive {guidString}";
+				cmd.Start();
+
+				label2.Text = cmd.StartInfo.Arguments.ToString();
 			}
 		}
 
