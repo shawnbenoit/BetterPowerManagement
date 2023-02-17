@@ -98,6 +98,7 @@ namespace BetterPowerManagement
 		{
 
 			string selItem;
+			string selItemGUID;
 			int selIemIDX;
 
 			if(listView1.SelectedItems.Count == 0)
