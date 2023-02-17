@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,6 +9,12 @@ using System.Windows.Forms;
 
 namespace BetterPowerManagement
 {
+	struct planItem
+	{
+		public string friendlyName;
+		public string planGuid;
+	}
+
 	public partial class Form1 : Form
 	{
 		[DllImport("PowrProf.dll")]
@@ -72,26 +79,35 @@ namespace BetterPowerManagement
 		public Guid guidID;
 		//TODO
 
+		planItem planList = new planItem();
+		ArrayList planArray = new ArrayList();
+
 		public void listSchemes()
 		{
-			//ListView listofplans = new ListView();
-			//listofplans.Items.Clear();
-			//ListViewItem item = listofplans.SelectedItems[0];
-			//listofplans.View = View.Details;
-			//listofplans.FullRowSelect = true;
-			//listofplans.Columns.Add("Power Plan", 190, HorizontalAlignment.Left);
-
 			listView1.View = View.Details;
 			listView1.FullRowSelect = true;
 			listView1.Columns.Add("Power Plan", 190, HorizontalAlignment.Left);
 
 			var guidPlans = GetAll();
+			int i = 0;
 
 			foreach(Guid guidPlan in guidPlans)
 			{
 				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
+				planList.friendlyName = ReadFriendlyName(guidPlan);
+				planList.planGuid = guidPlan.ToString();
+				planArray.Add(planList);
+				i++;
 			}
 
+		}
+
+		public void printArrayList()
+		{
+			foreach(planItem plan in planArray)
+			{
+				Console.WriteLine(plan.friendlyName + " " + plan.planGuid);
+			}
 		}
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,14 +115,12 @@ namespace BetterPowerManagement
 
 			string selItem;
 			string selItemGUID;
-			int selIemIDX;
+			int selItemIDX;
 
 			if(listView1.SelectedItems.Count == 0)
 				return;
-			selIemIDX = listView1.SelectedItems.IndexOf(listView1.SelectedItems[0]);
-			selItem = listView1.SelectedItems[selIemIDX].Text;
-
-
+			selItemIDX = listView1.SelectedItems.IndexOf(listView1.SelectedItems[0]);
+			selItem = listView1.SelectedItems[selItemIDX].Text;
 
 			//System.Diagnostics.Process process = new System.Diagnostics.Process();
 			//System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
@@ -115,9 +129,6 @@ namespace BetterPowerManagement
 			//startInfo.Arguments = "/c powercfg /setactive " + guid;
 			//process.StartInfo = startInfo;
 			//process.Start();
-
-			if(listView1.SelectedItems.Count == 0)
-				return;
 
 			//label3.Text = cmd.Start().ToString();  //listView1.FocusedItem.Text;
 
@@ -244,6 +255,11 @@ namespace BetterPowerManagement
 		private void listView1_ItemActivate(object sender, EventArgs e)
 		{
 
+		}
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			printArrayList();
 		}
 	}
 }

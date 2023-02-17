@@ -40,6 +40,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.button4 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -57,7 +58,7 @@
 			// 
 			// listView1
 			// 
-			this.listView1.BackColor = System.Drawing.Color.Black;
+			this.listView1.BackColor = System.Drawing.Color.DimGray;
 			this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.listView1.ForeColor = System.Drawing.Color.White;
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -160,11 +161,21 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(170, 331);
+			this.label5.Location = new System.Drawing.Point(256, 331);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(35, 13);
 			this.label5.TabIndex = 9;
 			this.label5.Text = "label5";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(223, 32);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(91, 181);
+			this.button4.TabIndex = 10;
+			this.button4.Text = "button4";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// Form1
 			// 
@@ -174,6 +185,7 @@
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(966, 395);
 			this.ControlBox = false;
+			this.Controls.Add(this.button4);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
@@ -210,6 +222,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button button4;
 	}
 }
 
