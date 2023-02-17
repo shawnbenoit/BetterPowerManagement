@@ -96,6 +96,17 @@ namespace BetterPowerManagement
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
+
+			string selItem;
+			int selIemIDX;
+
+			if(listView1.SelectedItems.Count == 0)
+				return;
+			selIemIDX = listView1.SelectedItems.IndexOf(listView1.SelectedItems[0]);
+			selItem = listView1.SelectedItems[selIemIDX].Text;
+
+
+
 			//System.Diagnostics.Process process = new System.Diagnostics.Process();
 			//System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 			//startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
@@ -108,6 +119,8 @@ namespace BetterPowerManagement
 				return;
 
 			//label3.Text = cmd.Start().ToString();  //listView1.FocusedItem.Text;
+
+			label4.Text = selItem;
 
 		}
 
@@ -225,6 +238,11 @@ namespace BetterPowerManagement
 			{
 				dragging = false;
 			}
+		}
+
+		private void listView1_ItemActivate(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
