@@ -7,8 +7,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace BetterPowerManagement
 {
 	struct planItem
@@ -220,13 +218,9 @@ namespace BetterPowerManagement
 				cmd.StartInfo.Arguments = $"/import \"{inputPath}\" {guidString}";
 				cmd.Start();
 
-				label3.Text = cmd.StartInfo.Arguments.ToString();
-
 				//Set the new power plan as active
 				cmd.StartInfo.Arguments = $"/setactive {guidString}";
 				cmd.Start();
-
-				label2.Text = cmd.StartInfo.Arguments.ToString();
 			}
 		}
 
@@ -253,27 +247,35 @@ namespace BetterPowerManagement
 			}
 		}
 
-		private void listView1_ItemActivate(object sender, EventArgs e)
-		{
-			planItem currentPlan = new planItem();
-			string selItem;
-			string selItemGUID;
-			int selItemIDX;
-
-			if(listView1.SelectedItems.Count == 0)
-				return;
-
-			selItemIDX = IndexOf().ListView1.SelectedItems;
-			currentPlan = (planItem)planArray[selItemIDX];
-			selItem = currentPlan.friendlyName;
-			selItemGUID = currentPlan.planGuid;
-
-			SetActivePlan(selItem, selItemGUID);
-		}
-
 		private void button4_Click(object sender, EventArgs e)
 		{
 			printArrayList();
+		}
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(listView1.SelectedItems.Count != 0)
+			{
+				string selItem = listView1.SelectedItems.ToString();
+				string selItemGUID;
+
+				foreach(planItem item in planArray)
+				{
+					if(selItem != item.friendlyName)
+					{
+						Console.WriteLine("No Match");
+					}
+					else
+					{
+						Console.WriteLine("Match");
+						selItem = item.friendlyName;
+						selItemGUID = item.planGuid;
+						SetActivePlan(selItem, selItemGUID);
+
+					}
+				}
+
+			}
 		}
 	}
 }
