@@ -99,9 +99,10 @@ namespace BetterPowerManagement
 				i++;
 			}
 
-			foreach(Guid guidPlan in guidPlans)
+			foreach(planItem name in planArray)
 			{
-				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
+				Console.WriteLine($"\"{name.friendlyName.ToString()}\"");
+				//listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
 			}
 		}
 

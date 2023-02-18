@@ -1,0 +1,23 @@
+﻿1
+
+
+It seems that you're looking for List<ListViewItem>, not for array (ListViewItem[]):
+
+List<ListViewItem> myItems = new List<ListViewItem>();
+
+// Just add items when required; 
+// have a look at Remove, RemoveAt, Clear as well
+myItems.Add(new ListViewItem("Text 1"));
+
+// When you want read/write the item do as if you have an array
+ListViewItem myItem = myItems[0]; 
+You can use Linq to obtain items from existing ListView:
+
+myItems = listView1.Items
+  .OfType<ListViewItem>()
+  .ToList();
+or append existing list:
+
+List<ListViewItem> myItems = new List<ListViewItem>();
+...
+myItems.AddRange(listView1.Items.OfType<ListViewItem>());
