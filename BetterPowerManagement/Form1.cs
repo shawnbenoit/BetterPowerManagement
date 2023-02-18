@@ -93,13 +93,16 @@ namespace BetterPowerManagement
 
 			foreach(Guid guidPlan in guidPlans)
 			{
-				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
 				planList.friendlyName = ReadFriendlyName(guidPlan);
 				planList.planGuid = guidPlan.ToString();
 				planArray.Add(planList);
 				i++;
 			}
 
+			foreach(Guid guidPlan in guidPlans)
+			{
+				listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
+			}
 		}
 
 		public void printArrayList()
@@ -147,31 +150,31 @@ namespace BetterPowerManagement
 
 			if(chargeStatus > 85)
 			{
-				label1.ForeColor = System.Drawing.Color.Green;
+				label1.ForeColor = Color.Green;
 			}
 			else if(chargeStatus < 86 && chargeStatus > 71)
 			{
-				label1.ForeColor = System.Drawing.Color.GreenYellow;
+				label1.ForeColor = Color.GreenYellow;
 			}
 			else if(chargeStatus < 72 && chargeStatus > 58)
 			{
-				label1.ForeColor = System.Drawing.Color.Goldenrod;
+				label1.ForeColor = Color.Goldenrod;
 			}
 			else if(chargeStatus < 59 && chargeStatus > 45)
 			{
-				label1.ForeColor = System.Drawing.Color.Orange;
+				label1.ForeColor = Color.Orange;
 			}
 			else if(chargeStatus < 46 && chargeStatus > 32)
 			{
-				label1.ForeColor = System.Drawing.Color.DarkOrange;
+				label1.ForeColor = Color.DarkOrange;
 			}
 			else if(chargeStatus < 33 && chargeStatus > 19)
 			{
-				label1.ForeColor = System.Drawing.Color.OrangeRed;
+				label1.ForeColor = Color.OrangeRed;
 			}
 			else
 			{
-				label1.ForeColor = System.Drawing.Color.Red;
+				label1.ForeColor = Color.Red;
 			}
 		}
 
@@ -256,7 +259,7 @@ namespace BetterPowerManagement
 		{
 			if(listView1.SelectedItems.Count != 0)
 			{
-				string selItem = listView1.SelectedItems. ToString();
+				string selItem = listView1.Items.ToString();
 				label4.Text = selItem;
 				string selItemGUID;
 
