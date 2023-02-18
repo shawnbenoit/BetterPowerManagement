@@ -7,6 +7,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace BetterPowerManagement
 {
 	struct planItem
@@ -110,30 +112,29 @@ namespace BetterPowerManagement
 			}
 		}
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		public void SetActivePlan(string planName, string giudNumber)
 		{
+			string planNameString = planName;
+			string guidNumberString = giudNumber;
 
-			string selItem;
-			string selItemGUID;
-			int selItemIDX;
+			label4.Text = planNameString;
+			label5.Text = guidNumberString;
 
-			if(listView1.SelectedItems.Count == 0)
-				return;
-			selItemIDX = listView1.SelectedItems.IndexOf(listView1.SelectedItems[0]);
-			selItem = listView1.SelectedItems[selItemIDX].Text;
+			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
+			using(cmd) //This is here because Process implements IDisposable
+			{
+				//var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPerformanceMode.pow");
+				//This hides the resulting popup window
+				cmd.StartInfo.CreateNoWindow = true;
+				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-			//System.Diagnostics.Process process = new System.Diagnostics.Process();
-			//System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			//startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-			//startInfo.FileName = "cmd.exe";
-			//startInfo.Arguments = "/c powercfg /setactive " + guid;
-			//process.StartInfo = startInfo;
-			//process.Start();
+				//Prepare a guid for this new import
+				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
 
-			//label3.Text = cmd.Start().ToString();  //listView1.FocusedItem.Text;
-
-			label4.Text = selItem;
-
+				//Import the new power plan
+				cmd.StartInfo.Arguments = $"/setactive \"{planNameString}\" {guidNumberString}";
+				cmd.Start();
+			}
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -254,7 +255,20 @@ namespace BetterPowerManagement
 
 		private void listView1_ItemActivate(object sender, EventArgs e)
 		{
+			planItem currentPlan = new planItem();
+			string selItem;
+			string selItemGUID;
+			int selItemIDX;
 
+			if(listView1.SelectedItems.Count == 0)
+				return;
+
+			selItemIDX = IndexOf().ListView1.SelectedItems;
+			currentPlan = (planItem)planArray[selItemIDX];
+			selItem = currentPlan.friendlyName;
+			selItemGUID = currentPlan.planGuid;
+
+			SetActivePlan(selItem, selItemGUID);
 		}
 
 		private void button4_Click(object sender, EventArgs e)
