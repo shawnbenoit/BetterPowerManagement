@@ -115,8 +115,8 @@ namespace BetterPowerManagement
 			string planNameString = planName;
 			string guidNumberString = giudNumber;
 
-			label4.Text = planNameString;
-			label5.Text = guidNumberString;
+			//label4.Text = planNameString;
+			//label5.Text = guidNumberString;
 
 			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
 			using(cmd) //This is here because Process implements IDisposable
@@ -256,14 +256,21 @@ namespace BetterPowerManagement
 		{
 			if(listView1.SelectedItems.Count != 0)
 			{
-				string selItem = listView1.SelectedItems.ToString();
+				string selItem = listView1.SelectedItems. ToString();
+				label4.Text = selItem;
 				string selItemGUID;
+
 
 				foreach(planItem item in planArray)
 				{
 					if(selItem != item.friendlyName)
 					{
 						Console.WriteLine("No Match");
+
+						//selItem = item.friendlyName;
+						//selItemGUID = item.planGuid;
+						//label4.Text = selItem;
+						//label5.Text = selItemGUID;
 					}
 					else
 					{
@@ -271,6 +278,11 @@ namespace BetterPowerManagement
 						selItem = item.friendlyName;
 						selItemGUID = item.planGuid;
 						SetActivePlan(selItem, selItemGUID);
+
+						//selItem = item.friendlyName;
+						//selItemGUID = item.planGuid;
+						//label4.Text = selItem;
+						//label5.Text = selItemGUID;
 
 					}
 				}
