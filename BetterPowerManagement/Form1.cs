@@ -136,19 +136,16 @@ namespace BetterPowerManagement
 		{
 			string planNameString = planName;
 			string guidNumberString = giudNumber;
+			string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\" + planNameString);
 
-			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
-			using(cmd) //This is here because Process implements IDisposable
-			{
-				string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\" + planNameString);
-				//This hides the resulting popup window
-				cmd.StartInfo.CreateNoWindow = true;
-				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-				//Import the new power plan
-				cmd.StartInfo.Arguments = $"/import \"{inputPath}\" {guidNumberString}";
-				cmd.Start();
-			}
+			Process process = new Process();
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			startInfo.FileName = "cmd.exe";
+			//startInfo.Arguments = "/c powercfg /setactive 74c77414-b0ba-4b5a-96af-57705c7bb6dd";
+			startInfo.Arguments = $"/c powercfg /import \"{inputPath}\" {guidNumberString}";
+			process.StartInfo = startInfo;
+			process.Start();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -222,9 +219,9 @@ namespace BetterPowerManagement
 					}
 					else
 					{
-						Console.WriteLine("Calling SetActivePlan");
 						selItem = item.friendlyName;
 						selItemGUID = item.planGuid;
+						Console.WriteLine("Calling SetActivePlan: " + selItem + " " + selItemGUID);
 						SetActivePlan(selItem, selItemGUID);
 					}
 				}
