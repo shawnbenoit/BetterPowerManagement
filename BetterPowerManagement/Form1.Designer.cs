@@ -31,13 +31,15 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.label1 = new System.Windows.Forms.Label();
-			this.listView1 = new System.Windows.Forms.ListView();
 			this.button1 = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.planItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.planItemBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -47,29 +49,11 @@
 			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(7, 7);
+			this.label1.Location = new System.Drawing.Point(10, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(119, 19);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Battery Status: %";
-			// 
-			// listView1
-			// 
-			this.listView1.BackColor = System.Drawing.Color.DimGray;
-			this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.listView1.ForeColor = System.Drawing.Color.White;
-			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(10, 32);
-			this.listView1.Margin = new System.Windows.Forms.Padding(0);
-			this.listView1.MultiSelect = false;
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(210, 181);
-			this.listView1.TabIndex = 2;
-			this.listView1.TileSize = new System.Drawing.Size(50, 50);
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
-			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
 			// 
 			// button1
 			// 
@@ -144,6 +128,19 @@
 			this.label5.TabIndex = 9;
 			this.label5.Text = "label5";
 			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.Location = new System.Drawing.Point(10, 29);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(177, 173);
+			this.listBox1.TabIndex = 10;
+			this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+			// 
+			// planItemBindingSource
+			// 
+			this.planItemBindingSource.DataSource = typeof(BetterPowerManagement.planItem);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,12 +149,12 @@
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(520, 365);
 			this.ControlBox = false;
+			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.label1);
 			this.ForeColor = System.Drawing.Color.White;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -169,6 +166,7 @@
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+			((System.ComponentModel.ISupportInitialize)(this.planItemBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -177,13 +175,14 @@
 		#endregion
 
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.BindingSource planItemBindingSource;
 	}
 }
 

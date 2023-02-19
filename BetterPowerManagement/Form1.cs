@@ -84,10 +84,6 @@ namespace BetterPowerManagement
 
 		public void listSchemes()
 		{
-			listView1.View = View.Details;
-			listView1.FullRowSelect = true;
-			listView1.Columns.Add("Power Plan", 190, HorizontalAlignment.Left);
-
 			var guidPlans = GetAll();
 			int i = 0;
 
@@ -102,7 +98,7 @@ namespace BetterPowerManagement
 			foreach(planItem name in planArray)
 			{
 				Console.WriteLine($"\"{name.friendlyName.ToString()}\"");
-				//listView1.Items.Add(ReadFriendlyName(guidPlan), "Plan");
+				listBox1.Items.Add(name.friendlyName);
 			}
 		}
 
@@ -119,9 +115,6 @@ namespace BetterPowerManagement
 			string planNameString = planName;
 			string guidNumberString = giudNumber;
 
-			//label4.Text = planNameString;
-			//label5.Text = guidNumberString;
-
 			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
 			using(cmd) //This is here because Process implements IDisposable
 			{
@@ -137,11 +130,6 @@ namespace BetterPowerManagement
 				cmd.StartInfo.Arguments = $"/setactive \"{planNameString}\" {guidNumberString}";
 				cmd.Start();
 			}
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			this.Close();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -256,11 +244,11 @@ namespace BetterPowerManagement
 			printArrayList();
 		}
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		private void listBox1_Click(object sender, EventArgs e)
 		{
-			if(listView1.SelectedItems.Count != 0)
+			if(listBox1.Items.Count != 0)
 			{
-				string selItem = listView1.Items.ToString();
+				string selItem = listBox1.GetItemText(listBox1.SelectedItem);
 				label4.Text = selItem;
 				string selItemGUID;
 
@@ -269,12 +257,7 @@ namespace BetterPowerManagement
 				{
 					if(selItem != item.friendlyName)
 					{
-						Console.WriteLine("No Match");
-
-						//selItem = item.friendlyName;
-						//selItemGUID = item.planGuid;
-						//label4.Text = selItem;
-						//label5.Text = selItemGUID;
+						//Console.WriteLine("No Match");
 					}
 					else
 					{
@@ -282,16 +265,15 @@ namespace BetterPowerManagement
 						selItem = item.friendlyName;
 						selItemGUID = item.planGuid;
 						SetActivePlan(selItem, selItemGUID);
-
-						//selItem = item.friendlyName;
-						//selItemGUID = item.planGuid;
-						//label4.Text = selItem;
-						//label5.Text = selItemGUID;
-
 					}
 				}
 
 			}
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

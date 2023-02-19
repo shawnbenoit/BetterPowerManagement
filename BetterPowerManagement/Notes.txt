@@ -21,3 +21,41 @@ or append existing list:
 List<ListViewItem> myItems = new List<ListViewItem>();
 ...
 myItems.AddRange(listView1.Items.OfType<ListViewItem>());
+
+
+list box stuff
+
+if(listBox1.SelectedItems.Count != 0)
+			{
+				string selItem = listBox1.Items.ToString();
+				label4.Text = selItem;
+				string selItemGUID;
+
+
+				foreach(planItem item in planArray)
+				{
+					if(selItem != item.friendlyName)
+					{
+						Console.WriteLine("No Match");
+
+						//selItem = item.friendlyName;
+						//selItemGUID = item.planGuid;
+						//label4.Text = selItem;
+						//label5.Text = selItemGUID;
+					}
+					else
+					{
+						Console.WriteLine("Match");
+						selItem = item.friendlyName;
+						selItemGUID = item.planGuid;
+						SetActivePlan(selItem, selItemGUID);
+
+						//selItem = item.friendlyName;
+						//selItemGUID = item.planGuid;
+						//label4.Text = selItem;
+						//label5.Text = selItemGUID;
+
+					}
+				}
+
+			}
