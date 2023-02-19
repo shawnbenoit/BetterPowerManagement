@@ -126,21 +126,22 @@ namespace BetterPowerManagement
 			process.WaitForExit();
 		}
 
-		public void ImportPlan(string planName, string giudNumber)
-		{
-			string planNameString = planName;
-			string guidNumberString = giudNumber;
-			string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\" + planNameString);
+		//public void ImportPlan(string planName, string giudNumber)
+		//{
+		//	string planNameString = planName;
+		//	string guidNumberString = giudNumber;
+		//	string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\" + planNameString);
 
-			Process process = new Process();
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = $"/c powercfg -import \"{inputPath}\"";
-			process.StartInfo = startInfo;
-			process.Start();
-			process.WaitForExit();
-		}
+		//	Process process = new Process();
+		//	ProcessStartInfo startInfo = new ProcessStartInfo();
+		//	startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+		//	startInfo.FileName = "cmd.exe";
+		//	startInfo.Arguments = "/c powercfg -import " + $"\"{inputPath}\"";
+		//	process.StartInfo = startInfo;
+		//	label2.Text = startInfo.Arguments;
+		//	process.Start();
+		//	process.WaitForExit();
+		//}
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
@@ -177,26 +178,26 @@ namespace BetterPowerManagement
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
-		{
-			string planName = "Ultra Performance Mode.pow";
-			string guidString = Guid.NewGuid().ToString("D");
-			Console.WriteLine("Calling ImportPlan 'Ultra Performance Mode'");
-			ImportPlan(planName, guidString);
-		}
+		//private void button3_Click(object sender, EventArgs e)
+		//{
+		//	string planName = "Ultra Performance Mode.pow";
+		//	string guidString = Guid.NewGuid().ToString("D");
+		//	Console.WriteLine("Calling ImportPlan 'Ultra Performance Mode'");
+		//	ImportPlan(planName, guidString);
+		//}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			string planName = "Ultra Power Saver Mode.pow";
-			string guidString = Guid.NewGuid().ToString("D");
-			Console.WriteLine("Calling ImportPlan 'Ultra Power Saver Mode'");
-			ImportPlan(planName, guidString);
-		}
+		//private void button2_Click(object sender, EventArgs e)
+		//{
+		//	string planName = "Ultra Power Saver Mode.pow";
+		//	string guidString = Guid.NewGuid().ToString("D");
+		//	Console.WriteLine("Calling ImportPlan 'Ultra Power Saver Mode'");
+		//	ImportPlan(planName, guidString);
+		//}
 
-		private void button4_Click(object sender, EventArgs e)
-		{
-			printArrayList();
-		}
+		//private void button4_Click(object sender, EventArgs e)
+		//{
+		//	printArrayList();
+		//}
 
 		private void listBox1_Click(object sender, EventArgs e)
 		{
