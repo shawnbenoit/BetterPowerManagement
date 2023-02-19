@@ -276,6 +276,12 @@ namespace BetterPowerManagement
 			dragFormPoint = this.Location;
 		}
 
+		private void button4_Click_1(object sender, EventArgs e)
+		{
+			var cplPath = Path.Combine(Environment.SystemDirectory, "control.exe");
+			Process.Start(cplPath, "powercfg.cpl");
+		}
+
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Close();
