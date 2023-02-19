@@ -190,6 +190,7 @@ namespace BetterPowerManagement
 		{
 			string planName = "Ultra Performance Mode.pow";
 			string guidString = Guid.NewGuid().ToString("D");
+			Console.WriteLine("Calling ImportPlan 'Ultra Performance Mode'");
 			ImportPlan(planName, guidString);
 		}
 
@@ -197,6 +198,7 @@ namespace BetterPowerManagement
 		{
 			string planName = "Ultra Power Saver Mode.pow";
 			string guidString = Guid.NewGuid().ToString("D");
+			Console.WriteLine("Calling ImportPlan 'Ultra Power Saver Mode'");
 			ImportPlan(planName, guidString);
 		}
 
