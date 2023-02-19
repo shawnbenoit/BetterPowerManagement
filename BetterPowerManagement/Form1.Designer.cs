@@ -111,15 +111,19 @@
 			// listBox1
 			// 
 			this.listBox1.BackColor = System.Drawing.Color.Black;
-			this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.listBox1.ForeColor = System.Drawing.Color.White;
 			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 20;
+			this.listBox1.ItemHeight = 16;
 			this.listBox1.Location = new System.Drawing.Point(10, 29);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(178, 184);
+			this.listBox1.Size = new System.Drawing.Size(178, 176);
 			this.listBox1.TabIndex = 10;
 			this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+			this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
+			this.listBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+			this.listBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseUp);
 			// 
 			// planItemBindingSource
 			// 

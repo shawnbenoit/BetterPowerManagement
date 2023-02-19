@@ -99,8 +99,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\UltraPerformanceMode.pow" />
-    <None Include="Resources\UltraPowerSaver.pow" />
+    <None Include="Resources\Ultra Performance Mode.pow" />
+    <None Include="Resources\Ultra Power Saver Mode.pow" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -132,6 +132,25 @@ namespace BetterPowerManagement
 			}
 		}
 
+		public void ImportPlan(string planName, string giudNumber)
+		{
+			string planNameString = planName;
+			string guidNumberString = giudNumber;
+
+			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
+			using(cmd) //This is here because Process implements IDisposable
+			{
+				string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\" + planNameString);
+				//This hides the resulting popup window
+				cmd.StartInfo.CreateNoWindow = true;
+				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+				//Import the new power plan
+				cmd.StartInfo.Arguments = $"/import \"{inputPath}\" {guidNumberString}";
+				cmd.Start();
+			}
+		}
+
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			double chargeStatus = ((SystemInformation.PowerStatus.BatteryLifePercent) * 100);
@@ -169,51 +188,16 @@ namespace BetterPowerManagement
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			var cmd = new Process { StartInfo = { FileName = "powercfg" } };
-			using(cmd) //This is here because Process implements IDisposable
-			{
-				var inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPerformanceMode.pow");
-				//This hides the resulting popup window
-				cmd.StartInfo.CreateNoWindow = true;
-				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-				//Prepare a guid for this new import
-				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
-
-				//Import the new power plan
-				cmd.StartInfo.Arguments = $"-import \"{inputPath}\" {guidString}";
-				cmd.Start();
-
-				//Set the new power plan as active
-				cmd.StartInfo.Arguments = $"/setactive {guidString}";
-				cmd.Start();
-
-			}
-
+			string planName = "Ultra Performance Mode.pow";
+			string guidString = Guid.NewGuid().ToString("D");
+			ImportPlan(planName, guidString);
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			var cmd = new Process { StartInfo = { FileName = "powercfg.exe" } };
-			using(cmd) //This is here because Process implements IDisposable
-			{
-				string inputPath = Path.Combine(Environment.CurrentDirectory + "\\Resources\\UltraPowerSaver.pow");
-
-				//This hides the resulting popup window
-				cmd.StartInfo.CreateNoWindow = true;
-				cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-				//Prepare a guid for this new import
-				var guidString = Guid.NewGuid().ToString("D"); //Guid without braces
-
-				//Import the new power plan ---------------------------------------------------NEEDS WORK
-				cmd.StartInfo.Arguments = $"/import \"{inputPath}\" {guidString}";
-				cmd.Start();
-
-				//Set the new power plan as active
-				cmd.StartInfo.Arguments = $"/setactive {guidString}";
-				cmd.Start();
-			}
+			string planName = "Ultra Power Saver Mode.pow";
+			string guidString = Guid.NewGuid().ToString("D");
+			ImportPlan(planName, guidString);
 		}
 
 		private void button4_Click(object sender, EventArgs e)
@@ -236,7 +220,7 @@ namespace BetterPowerManagement
 					}
 					else
 					{
-						//Console.WriteLine("Match");
+						Console.WriteLine("Calling SetActivePlan");
 						selItem = item.friendlyName;
 						selItemGUID = item.planGuid;
 						SetActivePlan(selItem, selItemGUID);
@@ -267,10 +251,33 @@ namespace BetterPowerManagement
 				dragging = false;
 			}
 		}
+		private void listBox1_MouseMove(object sender, MouseEventArgs e)
+		{
+			if(dragging)
+			{
+				Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+				this.Location = Point.Add(dragFormPoint, new Size(dif));
+			}
+		}
+
+		private void listBox1_MouseUp(object sender, MouseEventArgs e)
+		{
+			{
+				dragging = false;
+			}
+		}
+
+		private void listBox1_MouseDown(object sender, MouseEventArgs e)
+		{
+			dragging = true;
+			dragCursorPoint = Cursor.Position;
+			dragFormPoint = this.Location;
+		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
+
 	}
 }
