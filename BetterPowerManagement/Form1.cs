@@ -216,6 +216,35 @@ namespace BetterPowerManagement
 			}
 		}
 
+		private void button4_Click(object sender, EventArgs e)
+		{
+			printArrayList();
+		}
+
+		private void listBox1_Click(object sender, EventArgs e)
+		{
+			if(listBox1.Items.Count != 0)
+			{
+				string selItem = listBox1.GetItemText(listBox1.SelectedItem);
+				string selItemGUID;
+
+				foreach(planItem item in planArray)
+				{
+					if(selItem != item.friendlyName)
+					{
+						//Console.WriteLine("No Match");
+					}
+					else
+					{
+						//Console.WriteLine("Match");
+						selItem = item.friendlyName;
+						selItemGUID = item.planGuid;
+						SetActivePlan(selItem, selItemGUID);
+					}
+				}
+
+			}
+		}
 		private void Form1_MouseDown(object sender, MouseEventArgs e)
 		{
 			dragging = true;
@@ -236,38 +265,6 @@ namespace BetterPowerManagement
 		{
 			{
 				dragging = false;
-			}
-		}
-
-		private void button4_Click(object sender, EventArgs e)
-		{
-			printArrayList();
-		}
-
-		private void listBox1_Click(object sender, EventArgs e)
-		{
-			if(listBox1.Items.Count != 0)
-			{
-				string selItem = listBox1.GetItemText(listBox1.SelectedItem);
-				label4.Text = selItem;
-				string selItemGUID;
-
-
-				foreach(planItem item in planArray)
-				{
-					if(selItem != item.friendlyName)
-					{
-						//Console.WriteLine("No Match");
-					}
-					else
-					{
-						Console.WriteLine("Match");
-						selItem = item.friendlyName;
-						selItemGUID = item.planGuid;
-						SetActivePlan(selItem, selItemGUID);
-					}
-				}
-
 			}
 		}
 

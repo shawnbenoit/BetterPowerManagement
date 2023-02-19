@@ -35,8 +35,6 @@
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.planItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.planItemBindingSource)).BeginInit();
@@ -67,7 +65,7 @@
 			this.button1.Location = new System.Drawing.Point(10, 290);
 			this.button1.Margin = new System.Windows.Forms.Padding(2);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(498, 33);
+			this.button1.Size = new System.Drawing.Size(178, 33);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "Exit";
 			this.button1.UseVisualStyleBackColor = false;
@@ -88,7 +86,7 @@
 			this.button2.ForeColor = System.Drawing.Color.White;
 			this.button2.Location = new System.Drawing.Point(10, 255);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(498, 30);
+			this.button2.Size = new System.Drawing.Size(178, 30);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "Import Ultra Power Saver";
 			this.button2.UseVisualStyleBackColor = false;
@@ -104,36 +102,22 @@
 			this.button3.ForeColor = System.Drawing.Color.White;
 			this.button3.Location = new System.Drawing.Point(10, 219);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(498, 30);
+			this.button3.Size = new System.Drawing.Size(178, 30);
 			this.button3.TabIndex = 6;
 			this.button3.Text = "Import Ultra Performance";
 			this.button3.UseVisualStyleBackColor = false;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(12, 331);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(35, 13);
-			this.label4.TabIndex = 8;
-			this.label4.Text = "label4";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 344);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(35, 13);
-			this.label5.TabIndex = 9;
-			this.label5.Text = "label5";
-			// 
 			// listBox1
 			// 
+			this.listBox1.BackColor = System.Drawing.Color.Black;
+			this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.listBox1.ForeColor = System.Drawing.Color.White;
 			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 20;
 			this.listBox1.Location = new System.Drawing.Point(10, 29);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(177, 173);
+			this.listBox1.Size = new System.Drawing.Size(178, 184);
 			this.listBox1.TabIndex = 10;
 			this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
 			// 
@@ -147,11 +131,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.Color.Black;
-			this.ClientSize = new System.Drawing.Size(520, 365);
+			this.ClientSize = new System.Drawing.Size(200, 335);
 			this.ControlBox = false;
 			this.Controls.Add(this.listBox1);
-			this.Controls.Add(this.label5);
-			this.Controls.Add(this.label4);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
@@ -179,8 +161,6 @@
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.BindingSource planItemBindingSource;
 	}
