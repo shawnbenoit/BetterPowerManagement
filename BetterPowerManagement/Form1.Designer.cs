@@ -95,7 +95,7 @@
 			// 
 			// planItemBindingSource
 			// 
-			this.planItemBindingSource.DataSource = typeof(BetterPowerManagement.planItem);
+			//this.planItemBindingSource.DataSource = typeof(BetterPowerManagement.planItem);
 			// 
 			// Form1
 			// 
